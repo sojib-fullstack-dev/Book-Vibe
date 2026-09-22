@@ -2,14 +2,12 @@
 import React from "react";
 import BookCard from "../BookCard";
 import { IBook } from "@/types/book.type";
-import { error } from "console";
+
 
 const getBooks = async () => {
   try {
-
-    const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL || 'https://book-vibe-ruddy-ten.vercel.app';
-    
-    const res = await fetch(`${baseUrl}/booksData.json`);
+  
+    const res = await fetch('/booksData.json');
     const data = await res.json();
     return data;
   } catch (error) {
