@@ -2,11 +2,18 @@
 import React from "react";
 import BookCard from "../BookCard";
 import { IBook } from "@/types/book.type";
+import { error } from "console";
 
 const getBooks = async () => {
-  const res = await fetch("http://localhost:3000/booksData.json");
+  try{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`);
   const data = await res.json();
   return data;
+  }catch (error){
+    console.error('Error Data',error)
+    return [];
+  }
+  
 };
 
 const BooksPage = async () => {
