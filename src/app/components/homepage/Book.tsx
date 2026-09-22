@@ -5,16 +5,18 @@ import { IBook } from "@/types/book.type";
 import { error } from "console";
 
 const getBooks = async () => {
-  try{
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`);
-  const data = await res.json();
-  return data;
-  }catch (error){
-    console.error('Error Data',error)
+  try {
+
+    const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL || 'https://book-vibe-ruddy-ten.vercel.app';
+    
+    const res = await fetch(`${baseUrl}/booksData.json`);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error Data', error);
     return [];
   }
-  
-};
+}
 
 const BooksPage = async () => {
   const BooksData = await getBooks();
