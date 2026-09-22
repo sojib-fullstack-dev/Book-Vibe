@@ -23,16 +23,23 @@ interface Props {
 }
 
 const getBooks = async () => {
-  try {
-  
-    const res = await fetch('/booksData.json');
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error('Error Data', error);
-    return [];
-  }
-}
+
+    try {
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`);
+
+        const data = await res.json();
+
+        return data;
+
+    } catch (error) {
+
+        console.error('Error Data', error)
+
+        return [];
+
+    }
+};
 const BookDetailsPage = async ({ params }: Props) => {
     const { bookId } = await params;
     const BooksData = await getBooks();
@@ -123,8 +130,8 @@ const BookDetailsPage = async ({ params }: Props) => {
 
                     {/* Buttons */}
                     <div className="card-actions">
-                        <ReadBtn books={books}/>
-                        <WhisList books={books}/>
+                        <ReadBtn books={books} />
+                        <WhisList books={books} />
                     </div>
 
                 </div>

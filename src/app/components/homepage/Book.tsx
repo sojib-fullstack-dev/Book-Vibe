@@ -5,16 +5,23 @@ import { IBook } from "@/types/book.type";
 
 
 const getBooks = async () => {
-  try {
-  
-    const res = await fetch('/booksData.json');
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error('Error Data', error);
-    return [];
-  }
-}
+
+    try {
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`);
+
+        const data = await res.json();
+
+        return data;
+
+    } catch (error) {
+
+        console.error('Error Data', error)
+
+        return [];
+
+    }
+};
 
 const BooksPage = async () => {
   const BooksData = await getBooks();
